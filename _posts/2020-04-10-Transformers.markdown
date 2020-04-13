@@ -2,9 +2,8 @@
 layout: post
 title:  "Transformers for parameters which take secrets."
 date:   2020-04-10
-categories: PowerShell, Pwsh, Parameters
+categories: PowerShell
 ---
-
 
 PowerShell Functions often need to accept secure strings as or PowerShell credentials (which contain secure strings) as parameters. There are people who will advise avoiding use of secure string completely, which isn’t really practical, but one shouldn’t credit Secure String with magic powers it doesn’t have.
 1.  It is encoded so that your account on the current machine can decode it at will – any process running under your account can get to the secret.
@@ -35,8 +34,8 @@ In the xml file you might see something like this
 <SS N="Password">01000000d08c9ddf011 … 395d4060</SS>
 </Props>
 {% endhighlight %}
-`<S>` Denotes a normal string and `<ss>` a long sequence of digits which become a secure string. There are ways use different keys, and DSC uses one of them to encrypt passwords when making putting them in a .MOF file, which service can then decode, but this simple method uses a personal, local key.
-Credentials and secure strings are also useful for things like personal access tokens or API Keys where you might prefer not to save the plain text, but the commands which use them expect plain text here’s a simple case
+`<S>` Denotes a normal string and `<SS>` a long sequence of digits which become a secure string. This simple method uses a personal, local key; there are ways ro use different keys, and DSC uses one of them to encrypt passwords when making putting them in a .MOF file, which a service can then use to decode a password
+Credentials and secure strings are also useful for things like personal access tokens or API Keys where you might prefer not to save the plain text, but the commands which use them expect plain text here’s a simple case:
 {% highlight powerShell %}
 Function Demo {
     [cmdletBinding()]
