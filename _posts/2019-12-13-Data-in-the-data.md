@@ -4,14 +4,13 @@ title:  "Parameters and putting the data in the data."
 date:   2019-12-31
 categories: PowerShell
 ---
-In the last post said my IT career began in the Mesolithic era; a recent discussion reminded me of something from my days as an expert in SharePoint Portal Server and a talk I gave back in 2002 which would be the Neolithic. Back then I tried to explain **don’t put data in the field names** back then I was talking about document metadata but it applies anywhere
 
-![A column per version](/assets/colPerValue.png)
+<a href="/assets/colPerValue.png"><img style="float:right;display:inline;" border="1" alt="A column per version" src="/assets/colPerValue.png" width="680" align="right" height="277" /></a> 
+In [the last post](/powershell/2019/11/24/RedefiningCD.html) I said my IT career began in the Mesolithic era; a recent discussion reminded me of something from my days as an expert in SharePoint Portal Server and a talk I gave back in 2002 which would be the _Neolithic_. Back then I tried to explain **don’t put data in the field names** back then I was talking about document metadata but it applies _anywhere_.
 
 In the example above each possible value for a single question “which year are you in” has become its own yes/no question. “Are you in Year 7”, then “Are you in year 8”… it makes it awkward to ask for a list of pupils younger than X and so on; it’s just not a very good way. If multi-value fields are an option, it is much better to have one for “Subjects”, not separate tick boxes for “French”, “Geography”, “History”. But we do see skills databases with a column for every skill. And so on.
 
-The PowerShell angle came about in a discussion about how parameter sets should behave. The person I was talking to had a fragment of script which looked roughly like the following pseudo-code
-
+<p style="margin-bottom:0">The PowerShell angle came about in a discussion about how parameter sets should behave. The person I was talking to had a fragment of script which looked roughly like the following pseudo-code</p>
 {% highlight powerShell %}
 function Send-Message {
   param(
@@ -23,34 +22,35 @@ function Send-Message {
   if     ($HighPriority) { $Priority ++ }
   elseif ($LowPriority)  { $Priority -- }
 
-  Invoke-sender $message $Priority
+  Invoke-Sender $message $Priority
 }
 {% endhighlight  %}
-His complaint was that PowerShell does not deduce that the script should run with neither HighPriority nor LowPriority. (Because he has a _Normal_ priority which works if _neither_ is specified) and to avoid a message
+His complaint was that PowerShell does not deduce that the script should run with neither HighPriority nor LowPriority. (Because he has a _Normal_ priority which works if _neither_ is specified) and to avoid a message    
 <code><font color="#c0504d">Parameter set cannot be resolved using the specified named parameters</font></code> he needs to either specify a default set, or say that one of the two parameters is mandatory.
-Of course when a language has this sort of behaviour some people come to rely on it: if the options were “ID” and “Name” and providing neither meant some action would change all items without filtering by either, a parameter resolution error is the only thing standing between a mistyped command and disaster.
+Of course when a language has this sort of behaviour, some people come to rely on it: if the options were “ID” and “Name” and providing neither meant some action would change all items without filtering by either, a parameter resolution error is the only thing standing between a mistyped command and disaster.
 
-Experienced programmers / scripters will know that code sometimes grows in this way: first it has
-`[switch]$HighPriority`
+<p style="margin-bottom:0">Experienced programmers / scripters will know that code sometimes grows in this way: first it has<br/>
+<code>&#160;&#160;[switch]$HighPriority</code><br/>
 giving “ordinary” behaviour (send at priority of 1) and a switch to invoke “special mode” and run extra code (raising priority to 2). All is as it should be.
-Then someone says “we should support low priority” and the parameters become
+Then someone says “we should support low priority” and the parameters become</p>
 ```
-[switch]$HighPriority
-[switch]$LowPriority
+  [switch]$HighPriority
+  [switch]$LowPriority
 ```
-This means any existing scripts can retain `–HighPriority`. But things are already going wrong. We no longer have “Special” and “Ordinary”, selected by one switch (two choices), but priority 1,2 or 0 selected using two switches (four choices) “Both” is a nonsensical option so to prevent the user setting both, the parameters become
+<p style="margin-bottom:0;margin-top:1.3334em">This means any existing scripts can retain `–HighPriority`. But things are already going wrong. We no longer have “Special” and “Ordinary”, selected by one switch (two choices), but priority 1,2 or 0 selected using two switches (four choices) “Both” is a nonsensical option, so to prevent the user setting both, the parameters become</p>
 ```
-[Parameter(ParameterSetName = 'High')] [switch]$HighPriority,
-[Parameter(ParameterSetName = 'Low')]  [switch]$LowPriority
+  [Parameter(ParameterSetName = 'High')] [switch]$HighPriority,
+  [Parameter(ParameterSetName = 'Low')]  [switch]$LowPriority
 ```
-At this point PowerShell doesn’t know there should be a third option. Both parameters are required in their respective sets but neither is marked as mandatory. If HighPriority were mandatory, PowerShell would interpret _neither_ to be the “Low” set with its optional parameter omitted. If a set can’t be used without a parameter, that parameter really should be mandatory, but when a set has a single parameter specifying the parameter selects the set. Keeping <u>one</u> set with _everything_ optional allows that set to be selected as a default if nothing can be inferred from the parameters which _are_ there.
-I think it is better style to declare a third set, with no members of its own, to be the default. The extra set or the the “defaultable” set both side step the error when high and low are omitted, but they don’t make it clear that that results in a valid, safe, priority of 1. It is better to collapse the two switches into one parameter which can take any of the three values with a default, like this.
+<br/>At this point PowerShell doesn’t know there should be a third option. Both parameters are required in their respective sets but neither is marked as mandatory. If HighPriority were mandatory, PowerShell would interpret _neither_ to be the “Low” set with its optional parameter omitted. If a set can’t be used without a parameter, that parameter really should be mandatory, but when a set has a single parameter specifying the parameter selects the set. Keeping <u>one</u> set with _everything_ optional allows that set to be selected as a default if nothing can be inferred from the parameters which _are_ there.
+
+<p style="margin-bottom:0">I think it is better style to declare a third set, with no members of its own, to be the default. The extra set or the the “defaultable” set both side step the error when high and low are omitted, but they don’t make it clear that that results in a valid, safe, priority of 1. It is better to collapse the two switches into one parameter which can take any of the three values with a default, like this.</P>
 
 {% highlight powerShell %}
 function Send-Message {
   param(
     [string] $Message,
-    [ValidateSet('Normal','High','Low')]$Priority = 'High'
+    [ValidateSet('Normal','High','Low')]$Priority = 'Normal'
     )
   Switch ($Priority) {
     "Low"   {Invoke-Sender $message 0 }
@@ -64,8 +64,7 @@ High, Medium and Low will tab complete, making it obvious to the user that there
   [parameter(DontShow)]
   [switch]$HighPriority
 {% endhighlight %}
-
-Marking a parameter as don’t show hides it in tab completion - useful for a deprecated option.  If it is specified and the priority is not, then Priority can be set accordingly.
+<p style="margin-bottom:0;margin-top:1.3334em">Marking a parameter as <i>don’t show</i> hides it in tab completion - useful for a deprecated option.  If it is specified and the priority is not, then Priority can be set accordingly.</p>
 {% highlight powerShell %}
   if (-not $PSBoundParameters.ContainsKey("Priority") -and $Highpriority) {
     $Priority = "High"
@@ -93,9 +92,8 @@ Selenium is a test framework for loading web pages into a browser and checking t
   [Parameter(ParameterSetName = "ByXPath")]
   $XPath
 {% endhighlight %}
-
-All legal and valid. There are 8 parameter sets - if we needed to segment on something else it would become 16 or 24 or 32 sets. In the body of the function there is
-
+<p style="margin-bottom:0;margin-top:1.3334em">
+All legal and valid. There are 8 parameter sets - if we needed to segment on something else it would become 16 or 24 or 32 sets. In the body of the function there is this:</p>
 {% highlight powerShell %}
   if ($PSCmdlet.ParameterSetName -eq "ByName") {
       $Target.FindElements([OpenQA.Selenium.By]::Name($Name))
@@ -115,11 +113,13 @@ And this repeats for each parameter set. Using the logic I’ve already talked a
   [Parameter(Position=1,Mandatory=$true)]
   [string]$Selection,
 {% endhighlight %}
-The old syntax of `–XPath "something"` has become `–By Xpath –selection "something"` or `–By Xpath "something"` (because “something” will be assumed to be selection) or simply `"something"` (because `–By` defaults to "Xpath".) and the main part of the code becomes one line
-
+<p style="margin-bottom:0;margin-top:1.3334em">The old syntax of <code>–XPath "something"</code> has become <code>–By Xpath –Selection "something"</code> or <code>–By Xpath "something"</code> (because “something” will be assumed to be the vaue for selection) or simply <code>"something"</code> (because <code>–By</code> defaults to "Xpath") and the main part of the code becomes one line</p>
+{% highlight powerShell %}
 $Target.FindElements([OpenQA.Selenium.By]::$By($Selection))
-The static method is selected using a parameter value, which is validated to be one of the allowed methods; and the value passed to the method always comes from the same parameter.
-But this won’t (yet) work with the original syntax. However, because `-By` isn’t mandatory,and I have created aliases for the new selection parameter using the “lost” names the new version can still be called with  `-xpath "Something"`. It needs a little extra code (which appears below) to recognise that has happened and set `$By` to the right value. First it finds the name which was used to call the function (it might be an alias, or the function might be renamed), then if the `–By` parameter hasn’t been supplied and the command line reads `InvocationName  <<anything except ‘>’, ‘|’ or ‘;’>> –ParameterAlias` it captures the parameter alias and puts it into `$by`
+{% endhighlight %}
+The static method is selected using a parameter value, which is validated to be one of the allowed methods; and the value passed to the method always comes from the same parameter.    
+But this won’t (yet) work with the original syntax. However, because `-By` isn’t mandatory, and I have created aliases for the new `selection` parameter using the “lost” names the new version can still be called with  `-xpath "Something"`. It needs a little extra code (which appears below) to recognise that has happened and set `$By` to the right value.     
+First it finds the name which was used to call the function (it might be an alias, or the function might be renamed), then if the `–By` parameter hasn’t been supplied and the command line reads `InvocationName  <<anything except ‘>’, ‘|’ or ‘;’>> –ParameterAlias` it captures the alias and puts that into `$by`:
 {% highlight powerShell %}
   $mi = $MyInvocation.InvocationName
   if(-not $PSBoundParameters.ContainsKey("By") -and

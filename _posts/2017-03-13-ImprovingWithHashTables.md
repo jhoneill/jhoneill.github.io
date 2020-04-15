@@ -12,7 +12,7 @@ That is not always the case.  I’ve been working with a client who has over 100
 ![VennDiagram](/assets/venn-diagram.png)
 If you’ve worked with LDAP queries against AD, you may know how to find the nested members of the group using `(memberOf:1.2.840.113556.1.4.1941:=<<Group DN>>)`.
 The Lync/Skype for Business cmdlets won’t combine an LDAP filter for AD group membership and non-AD property filter for policy – the user objects returned actually contain more than a dozen different policy properties, but for simplicity I’m just going to use ‘policy’ here – as pseduo-code the natural way to find users and change policy – which someone else had already written – looks like this:
-{% highlight powerShell %}
+{% highlight powershell %}
 Get-CSuser –ldapfiler "(   memberOf <<nested group>> )" | where-object {$_.policy –ne $PolicyName} | Grant-Policy $PolicyName
 Get-CSuser –ldapfiler "( ! memberOf <<nested group>>) " | where-object {$_.policy –eq $PolicyName} | Grant-Policy $null
 {% endhighlight %}

@@ -213,6 +213,20 @@ code {
   color: $text-color;
   line-height: 1;
 }
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 0em 0px;
+}
+
+figure {
+    display: block;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
 
 /* Set the vertical rhythm (and padding-left) for lists inside post content */
 
