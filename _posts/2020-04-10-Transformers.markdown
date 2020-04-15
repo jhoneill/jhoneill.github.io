@@ -8,13 +8,13 @@ categories: PowerShell
 PowerShell Functions often need to accept secure strings as or PowerShell credentials (which contain secure strings) as parameters. There are people who will advise avoiding use of secure string completely, which isn’t really practical, but one shouldn’t credit Secure String with magic powers it doesn’t have.
 1.  It is encoded so that your account on the current machine can decode it at will – any process running under your account can get to the secret.
 2.  Another account, or your account on another machine can’t decode it. The main use is **securing something in a file on one machine.**
-3.  In PowerShell 7 (but not PowerShell Core 6 or Windows PowerShell 5) the ConvertFrom-SecureString cmdlet has an -AsPlainText switch which gets the secret back. With older version the standard process is to create a credential object and then ask for the plaintext “network password”.
+3.  In PowerShell 7 (but not PowerShell Core 6 or Windows PowerShell 5) the `ConvertFrom-SecureString` cmdlet has an `-AsPlainText` switch which gets the secret back. With older version the standard process is to create a credential object and then ask for the plaintext “network password”.
 4.  **It is only securing the credential at rest** in the file. At some stage the **plain text will be in memory(()) (and malware can find it).
 
 A script which looks like the following is obviously bad
 {% highlight powerShell %}
 $MyUserName = "James"
-$MyPassword = ConvertTo-SecureString -force -asPlainText "NotVerySecret"
+$MyPassword = ConvertTo-SecureString -force -AsPlainText "NotVerySecret"
 $Credential = New-Object PSCredential $myUserName,$MyPassword
 {% endhighlight %}
 Better to do
