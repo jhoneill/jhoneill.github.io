@@ -1,0 +1,36 @@
+<hr />
+<p style="text-align: center;">{% if page.previous.url %} <a href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">&lt;&lt;Previous post</a>&nbsp;&nbsp;&nbsp;{% endif %}&nbsp;&nbsp{% if page.next.url %}&nbsp;&nbsp<a href="{{page.next.url}}" title="Next post: {{page.next.title}}">Next Post&gt;&gt;</a>{% endif %}</p> 
+
+<div class="sharebuttons">
+  <ul>
+    <li>  
+        <a href="https://github.com/{{ site.github_username }}/{{ site.github_username  }}.github.io/issues/new/choose">Leave feedback via github</a>
+        {% include social/github.svg %}
+        <a href="https://github.com/{{ site.github_username }}?tab=repositories" >My repos</a>&nbsp;
+    </li>   
+    <li>
+        &nbsp;<a href="https://twitter.com/{{ site.twitter_username }}" style="color:#1DA1F2;font-weight: 600;">My Twitter posts.</a>&nbsp;
+    </li>
+    <li>
+      <span>&nbsp;Share this:&nbsp;</span>
+    </li>
+    <li class="reddit">
+      <a href="http://www.reddit.com/submit?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&title={{ page.title | default:"" | uri_escape }}" target="_blank">
+        {% include social/reddit.svg %}
+      </a>
+    </li>
+    <li class="twitter">
+      <a href="https://twitter.com/intent/tweet?via={{ site.twitter_username }}&url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&text={{ page.title | default:"" | uri_escape}}" target="_blank">
+        {% include social/twitter.svg %}
+      </a>
+    </li>
+    <li class="linkedin">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url | uri_escape}}&title={{ page.title | default:"" | uri_escape}}" target="_blank">
+        {% include social/linkedin.svg %}
+      </a>
+    </li>
+    <li>
+        <span>&nbsp;Style: <a href="https://github.com/thereviewindex/monochrome/archive/master.zip">Monochrome</a></span>
+    </li>
+  </ul>
+</div>

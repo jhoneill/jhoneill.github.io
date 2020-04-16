@@ -97,6 +97,7 @@ Function Demo {
  SYNTAX
     Demo [[-ApiKey] <string>]
 ```
-My preference is more towards removing the type and assuming the user will read _more_ of the help, but I don’t think these things are absolutes. As supporting older versions of PowerShell becomes less of an issue, using classes and shifting the “first make sure this is the right kind of thing” code can simplify the function body, which is a plus.
-There is a case for changing the parameter type to Secure-String and having a transformer which turns plain strings to secure ones. But that can lead to writing
-`Demo –apikey (convertTo-SecureString …)` , which is the horrible insecure method I showed at the start but more annoying to a user – especially if they look inside the function and see the first thing that happens is the Secure-String is converted back an placed in a request body. Examples should never show that, but should be based on the Secure-String coming from a file.
+My preference is more towards removing the type and assuming the user will read _more_ of the help, but I don’t think these things are absolutes. As supporting older versions of PowerShell becomes less of an issue, using classes and shifting the “first make sure this is the right kind of thing” code can simplify the function body, which is a plus.    
+There is a case for changing the parameter type to Secure-String and having a transformer which turns plain strings to secure ones. But that can lead to writing    
+`Demo –apikey (convertTo-SecureString …)`     
+which is the horrible insecure method I showed at the start but more annoying to a user – especially if they look inside the function and see the first thing that happens is the Secure-String is converted back an placed in a request body. **Examples** should never show _that_, but should be based on the Secure-String coming _from a file_.
