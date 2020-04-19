@@ -1,4 +1,5 @@
 {
     "files.defaultLanguage": "markdown",
-    "files.trimTrailingWhitespace": false
+    "files.trimTrailingWhitespace": false,
+    "editor.renderLineHighlight": "none"
 }

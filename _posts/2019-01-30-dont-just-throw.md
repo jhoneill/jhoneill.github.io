@@ -6,23 +6,21 @@ categories: PowerShell
 ---
 I write  `; return`  every time that I put `throw` in my PowerShell scripts. I didn’t always do it. Sooner or later I’ll need to explain why.
 
-First off: when something throws an error it is kind-of ugly, and it can stop things that we don’t to be stopped, sometimes **Write-Warning is better** than throw.  But many (probably most) people don’t realise the assumption they’re making when they use _throw_.
-
-Here’s a simple function to demonstrate the point
+First off: when something throws an error it is kind-of ugly, and it can stop things that we don’t to be stopped, sometimes **Write-Warning is better** than `throw`.  But many (probably most) people don’t realise the assumption they’re making when they use `throw`. Here’s a simple function to demonstrate the point
 {% highlight powershell%}
 function test {
     [cmdletbinding()]
     Param([switch]$GoWrong)
-    Write-verbose "Starting ..."
+    Write-Verbose "Starting ..."
     if ($GoWrong) {
-        write-host "Something bad happened"
+        Write-Host "Something bad happened"
         throw "Failure message"
     }
     else {
         Write-Host "All OK So Far"
     }
     if ($GoWrong) {
-        write-host "Something worse happens. "
+        write-Host "Something worse happens. "
     }
     else {
         Write-Host "Still OK"
@@ -44,7 +42,7 @@ Something bad happened<br/>
 At line:9 char:9<br/>
 \+         throw "Failure message"</span></code>
 
-Exactly what’s expected – **where’s the problem?** no need to put a return in is there ?
+Exactly what’s expected – **where’s the problem?** no need to put a `return` in is there ?
 Someone else takes up the function and they write this.
 
 {% highlight powershell%}
@@ -71,9 +69,10 @@ Something bad happened<br/>
 At line:9 char:9<br/>
 \+         throw "Failure message"</span></code>
 
-That `throw` in the first function was for protection but it has lost some work. And the author of Test2 doesn’t like big lumps of “blood” on the screen. What would you do here? I know what I did, and it wasn’t to say “Oh somebody threw something, so I should try to catch it” and start wrapping things in `try {} catch {}`. I said “One quick change will fix that!”
+That `throw` in the first function was for protection but it has _lost some work_. And the author of Test2 doesn’t like big lumps of “blood” on the screen. What would you do here? I know what I did, and it wasn’t to say “Oh somebody threw something, so I should try to catch it” and start wrapping things in `try {} catch {}`. I said “One quick change will fix that!”
 {% highlight powershell%}
     test -GoWrong:$Something -ErrorAction SilentlyContinue
+    
 {% endhighlight %}
 
 Problem solved.
@@ -87,4 +86,4 @@ Something worse happens.<br/>
 
 The change got rid of the ‘blood’, and the result came back. But… the second message got written – execution continued into exactly the bit of code which had to be prevented from running. Specifying the error action **stopped the throw doing anything.**
 
-Discovering that made me put a return after every throw, even though it should be redundant more than 99% of the time. And I now think any test of error handling should include changing the value of `$ErrorActionPreference` to ensure things stop when the preference is for all errors to silently continue.
+Discovering that made me put a `return` after every `throw`, even though it should be redundant more than 99% of the time. And I now think any _test of error handling_ should include changing the value of `$ErrorActionPreference` to ensure things stop when necessary, even when the preference is for all errors to silently continue.

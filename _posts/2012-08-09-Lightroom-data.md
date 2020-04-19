@@ -32,62 +32,72 @@ I was interested in 4 sets of data shown in the following diagrams. Below is i**
 
 ![Schema1](/assets/Lightroom-schema-1.png)
 
-The SQL to fetch this data looks like this for just the folders
+The SQL to fetch this data looks like this to just get the folders
 {% highlight SQL %}
-SELECT RootFolder.absolutePath || Folder.pathFromRoot as FullName
-FROM   AgLibraryFolder     Folder
-JOIN   AgLibraryRootFolder RootFolder ON  RootFolder.id_local = Folder.rootFolder
-ORDER BY FullName 
+SELECT        RootFolder.absolutePath || Folder.pathFromRoot as FullName
+FROM          AgLibraryFolder     Folder
+       JOIN   AgLibraryRootFolder RootFolder ON  RootFolder.id_local = Folder.rootFolder
+ORDER  BY     FullName 
+
 {% endhighlight %}
-SQLlite is one of the dialects of SQL which doesn’t accept AS in the FROM part of a SELECT statement . Since I run this in PowerShell I also put a where clause in, which inserts a parameter. To get all the metadata the query looks like this    
+SQLlite is one of the dialects of SQL which **doesn’t accept AS in the FROM part** of a SELECT statement . Since I run this in PowerShell I also put a where clause in, which inserts a parameter. To get all the metadata the query looks like this    
 {% highlight SQL %}
-SELECT    rootFolder.absolutePath || folder.pathFromRoot || rootfile.baseName || '.' || rootfile.extension AS fullName, 
-          LensRef.value AS Lens,     image.id_global,       colorLabels,                Camera.Value       AS cameraModel,
-          fileFormat,                fileHeight,            fileWidth,                  orientation ,
-          captureTime,               dateDay,               dateMonth,                  dateYear,
-          hasGPS ,                   gpsLatitude,           gpsLongitude,               flashFired,
-          focalLength,               isoSpeedRating ,       caption,                    copyright
-FROM      AgLibraryIPTC              IPTC
-JOIN      Adobe_images               image      ON      image.id_local = IPTC.image
-JOIN      AgLibraryFile              rootFile   ON   rootfile.id_local = image.rootFile
-JOIN      AgLibraryFolder            folder     ON     folder.id_local = rootfile.folder
-JOIN      AgLibraryRootFolder        rootFolder ON rootFolder.id_local = folder.rootFolder
-JOIN      AgharvestedExifMetadata    metadata   ON      image.id_local = metadata.image
-LEFT JOIN AgInternedExifLens         LensRef    ON    LensRef.id_Local = metadata.lensRef
-LEFT JOIN AgInternedExifCameraModel  Camera     ON     Camera.id_local = metadata.cameraModelRef
-ORDER BY FullName
+SELECT      rootFolder.absolutePath || folder.pathFromRoot || rootfile.baseName || '.' || rootfile.extension AS fullName, 
+            LensRef.value AS Lens,     image.id_global,       colorLabels,                Camera.Value       AS cameraModel,
+            fileFormat,                fileHeight,            fileWidth,                  orientation ,
+            captureTime,               dateDay,               dateMonth,                  dateYear,
+            hasGPS ,                   gpsLatitude,           gpsLongitude,               flashFired,
+            focalLength,               isoSpeedRating ,       caption,                    copyright
+FROM        AgLibraryIPTC              IPTC
+       JOIN Adobe_images               image      ON      image.id_local = IPTC.image
+       JOIN AgLibraryFile              rootFile   ON   rootfile.id_local = image.rootFile
+       JOIN AgLibraryFolder            folder     ON     folder.id_local = rootfile.folder
+       JOIN AgLibraryRootFolder        rootFolder ON rootFolder.id_local = folder.rootFolder
+       JOIN AgharvestedExifMetadata    metadata   ON      image.id_local = metadata.image  
+  LEFT JOIN AgInternedExifLens         LensRef    ON    LensRef.id_Local = metadata.lensRef 
+  LEFT JOIN AgInternedExifCameraModel  Camera     ON     Camera.id_local = metadata.cameraModelRef
+ORDER  BY   FullName 
+ 
 {% endhighlight %}
 
-Note that since some images don’t have a camera or lens logged the joins to those tables needs to be a LEFT join not an inner join. Again the version I use in PowerShell has a Where clause which inserts a parameter.
+Note that since some images don’t have a camera or lens logged the joins to those tables needs to be a **LEFT join** not an inner join. Again the version I use in PowerShell has a *Where clause* which inserts a parameter.
 
-OK so much for file data – the other data I wanted was about collections. The list of collections is in just one table (AgLibraryCollection) so very easy to query, and but I also wanted to know the images in each collection.
+OK. so much for file data – the other data I wanted was about collections. The list of collections is in just one table (AgLibraryCollection) so very easy to query, and but I also wanted to know the images in each collection.
 
 ![Schema2](/assets/Lightroom-schema-2.png)
 
 Since one image can be in many collections,and each collection holds many images AgLibraryCollectionImage is a table to provide a many to relationship. Different tables might be attached to AdobeImages depending on what information one wants from about the images in a collection, I’m interested only in mapping files on disk to collections in Lightroom, so I have linked to the file information and I have a query like this.
 {% highlight SQL %}
-SELECT   Collection.name AS CollectionName ,
-         RootFolder.absolutePath || Folder.pathFromRoot || RootFile.baseName || '.' || RootFile.extension AS FullName
-FROM     AgLibraryCollection Collection
-JOIN     AgLibraryCollectionimage cimage     ON collection.id_local = cimage.Collection
-JOIN     Adobe_images             Image      ON      Image.id_local = cimage.image
-JOIN     AgLibraryFile            RootFile   ON   Rootfile.id_local = image.rootFile
-JOIN     AgLibraryFolder          Folder     ON     folder.id_local = RootFile.folder
-JOIN     AgLibraryRootFolder      RootFolder ON RootFolder.id_local = Folder.rootFolder
-ORDER BY CollectionName, FullName
+SELECT       Collection.name AS CollectionName ,
+             RootFolder.absolutePath || Folder.pathFromRoot || RootFile.baseName || '.' || RootFile.extension AS FullName
+FROM         AgLibraryCollection Collection
+       JOIN  AgLibraryCollectionimage cimage     ON collection.id_local = cimage.Collection
+       JOIN  Adobe_images             Image      ON      Image.id_local = cimage.image
+       JOIN  AgLibraryFile            RootFile   ON   Rootfile.id_local = image.rootFile
+       JOIN  AgLibraryFolder          Folder     ON     folder.id_local = RootFile.folder
+       JOIN  AgLibraryRootFolder      RootFolder ON RootFolder.id_local = Folder.rootFolder
+ORDER  BY    CollectionName, FullName
+ 
 {% endhighlight %}
 Once I have an ODBC driver (or an OLE DB driver) I have a ready-made PowerShell template for getting data from the data source. So I wrote functions to let me do :    
-`Get-LightRoomItem -ListFolders -include $pwd  ` To list folders, below the current one, which are in the LightRoom Library,    
-`Get-LightRoomItem  -include "dive"  ` To list files in LightRoom Library where the path contains  "dive" in the folder or filename,    
-`Get-LightRoomItem | Group-Object -no -Property "Lens" | sort count | ft -a count,name`    
-To produce a summary of lightroom items by lens used. And    
-```
-$paths = (Get-LightRoomItem -include "$pwd%dng" | select -ExpandProperty path)  ;   dir *.dng |
-           where {$paths -notcontains $_.FullName} | move -Destination scrap -whatif
-```    
-Stores paths of lightroom items in the current folder ending in .DNG in $paths;  then gets files in the current folder and moves those which are not in $paths (i.e. in Lightroom.) specifying  -Whatif allows the files to be confirmed before being moved.
+-  `Get-LightroomItem -ListFolders -include $pwd  `     
+To list folders, below the current one, which are in the Lightroom Library,    
+-  `Get-LightroomItem  -include "dive"  `     
+To list files in Lightroom Library where the path contains  "dive" in the folder or filename,    
+-  `Get-LightroomItem | Group-Object -no -Property "Lens" | sort count | ft -a count,name`    
+To produce a summary of Lightroom items by lens used.
+`Get-LightroomCollection`     
+lists all collections and
+`Get-LightroomCollectionItem -include musicians | copy -Destination e:\raw\musicians`    
+will copy the original files in the “musicians” collection to another disk
+ 
+ And this:
+{% highlight powershell %}
+  $paths = (Get-LightroomItem -include "$pwd%dng" | select -ExpandProperty path)  
+  dir *.dng | where {$paths -notcontains $_.FullName} | move -Destination scrap -whatif
+  
+{% endhighlight %}
+Stores paths of Lightroom items in the current folder ending in .DNG in $paths;  then gets files in the current folder and moves those which are not in `$paths` (i.e. in Lightroom.) specifying  `-Whatif` allows the files to be confirmed before being moved.
 
-`Get-LightRoomCollection` lists all collections and    
-`Get-LightRoomCollectionItem -include musicians | copy -Destination e:\raw\musicians` will copy the original files in the “musicians” collection to another disk
 
-I’ve shared the PowerShell code on Skydrive
+I’ve shared the PowerShell code [as a gist](https://gist.github.com/jhoneill/a902c37d2c239584461af3ccecae44c9)

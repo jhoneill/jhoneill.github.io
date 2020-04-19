@@ -8,7 +8,7 @@ The first thing that everyone learns about PowerShell Aliases is that they just 
 `DIR` is an alias for `Get-ChildItem`; you can’t make an alias `RDIR` for `Get-ChildItem –Recurse`. If you want that you need a function.
 To quote Redmond’s most famous resident[^1] **I canna change the laws of physics, Captain, but I can find ye a loophole.**
 
-I wrote a function which I use <u>a lot</u> – 100+ times some days – named `Get-SQL`.    
+I wrote a function which I use <u>a lot</u> – 100+ times some days – named [`Get-SQL`](/powershell/databases/2017/01/29/Sharing-GetSQL.html).    
 Given an unknown command `xxx`,  PowerShell will see if there is a command `Get-xxx` before reporting an “Not recognized” error, so I usually just run it as `SQL` without the to `Get-`.    
 The function talks to databases and sessions it keeps connections open between calls: connections tend to named after places in South America, so to **open a session** I might run    
 {% highlight powershell%}
