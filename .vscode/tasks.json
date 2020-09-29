@@ -6,8 +6,9 @@
         {
             "label": "jekyll serve",
             "type": "process",
-            "command": "C:\\Ruby27-x64\\bin\\ruby.exe",
+            "command": "C:\\Ruby27-x64\\bin\\bundle.cmd",
             "args": [
+                {"value": "exec"},
                 {"value": "C:\\Ruby27-x64\\bin\\jekyll"},
                 {"value": "serve"}
             ],
