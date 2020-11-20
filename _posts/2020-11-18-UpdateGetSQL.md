@@ -85,5 +85,5 @@ copy '.\AppData\Local\Microsoft\Edge Dev\User Data\Default\Collections\collectio
 sql -lite -Connection "$env:temp\collectionsSQLite" -ShowTables 
     
 {% endhighlight %}
-But there are a many other things which seem to use SQLite and **Get-SQL** should help with most or all of them, you can get it from [the PowerShell gallery](https://www.powershellgallery.com/packages/GetSQL) and the source files are on [GitHub](https://github.com/jhoneill/GetSQL). I've included a simple filter that checks to see if a file is a SQLite database, and script to download the files from Nuget and add them to the module (so you don't need to trust the binaries I give you!) I have also posted a Gist with some examples of using it.   
+But there are a many other things which seem to use SQLite and **Get-SQL** should help with most or all of them, you can get it from [the PowerShell gallery](https://www.powershellgallery.com/packages/GetSQL) and the source files are on [GitHub](https://github.com/jhoneill/GetSQL). I've included a simple filter that checks to see if a file is a SQLite database, and script to download the files from Nuget and add them to the module (so you don't need to trust the binaries I give you!) I have also [posted a Gist](https://gist.github.com/jhoneill/7f27ff9a7f00945fea900d9a656613de  ) with some examples of using it.   
 
