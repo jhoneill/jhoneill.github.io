@@ -8,9 +8,15 @@
             "type": "process",
             "command": "C:\\Ruby27-x64\\bin\\bundle.cmd",
             "args": [
-                {"value": "exec"},
-                {"value": "C:\\Ruby27-x64\\bin\\jekyll"},
-                {"value": "serve"}
+                {
+                    "value": "exec"
+                },
+                {
+                    "value": "C:\\Ruby27-x64\\bin\\jekyll"
+                },
+                {
+                    "value": "serve"
+                }
             ],
             "problemMatcher": [],
             "group": {
