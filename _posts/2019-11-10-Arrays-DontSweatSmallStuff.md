@@ -43,10 +43,12 @@ return $results
 ```
 This pattern can stem from thinking every function must have a return, which is called exactly once, which isn’t the case in PowerShell. It’s quicker and simpler just as `Get-Stuff,` or if some processing needs to happen between getting and returning the results then something like the following, if the work is done object-by-object:
 
-`Get-Stuff | foreach-object {output_processed $_} `
+`Get-Stuff | foreach-object {output_processed $_} `   
 or if the work must be done on the whole set:
-```$results = Get-Stuff
+```
+$results = Get-Stuff
 work_on $results  #returning  final result
+    
 ```
 Another pattern looks like this.
 ```
@@ -55,18 +57,20 @@ some_loop {
   Operations
   $a += result
 }
+    
 ```
 
 this works better as
-```put_some_result in_$a
+```
+put_some_result in_$a
 $a += some_loop {
   Operations
   Output_result
 }
 ```
-A lot of cases where a better “add to array” looks like then answer are forms of this pattern and getting down to just one add is a better answer.
+A lot of cases where a better “add to array” looks like the answer are forms of this pattern and getting down to just one add is a better answer.
 When thousands of additions are unavoidable, a lot of advice says use `[Arraylist]` but as Anthony’s post points out, [more recent advice](https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8#remarks) is to use `[List[object]]` or `[List[Type]]`.
 
 ## Postscript
 
-At the same time as I was posting this, ]Tobias was looking at the same problem with strings](https://powershell.one/tricks/performance/strings). Again building up a 1,000,000 line string one line at a time is something to be avoided and again, it takes a lot longer to add create a new sting which is old-string + one-line when the old-string is big than when it is small, and I found that fitted a square law nicely: 10,000 string-appends took 1.7 seconds; 100,000 took 177 seconds. It takes as long to add 10 strings at lines to 100,000 to 100,010 line as adding the first 3,000 to an empty version. His conclusion – that if you really can’t avoid doing this, using a stringBuilder is much more efficient – is a good one, but I wouldn’t bother with one to join half a dozen strings together.
+At the same time as I was posting this, [Tobias was looking at the same problem with strings](https://powershell.one/tricks/performance/strings). Again building up a 1,000,000 line string one line at a time is something to be avoided and again, it takes a lot longer to add create a new sting which is old-string + one-line when the old-string is big than when it is small, and I found that fitted a square law nicely: 10,000 string-appends took 1.7 seconds; 100,000 took 177 seconds. It takes as long to add 10 strings at lines to 100,000 to 100,010 line as adding the first 3,000 to an empty version. His conclusion – that if you really can’t avoid doing this, using a stringBuilder is much more efficient – is a good one, but I wouldn’t bother with one to join half a dozen strings together.
