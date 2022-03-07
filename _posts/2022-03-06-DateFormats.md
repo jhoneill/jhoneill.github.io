@@ -206,7 +206,7 @@ I changed my culture back to English to show one of the pitfalls: the first one 
 ```
 
 Ambiguous dates leave us guessing: will a command  process an argument of "02/03/2022" with invariant or local rules? and does *local* always mean the same thing - if a script runs in London, Paris and New York will it do the same thing everywhere? (Servers might be set to common standard regardless of location, workstations probably aren't.)  
-If the output was "02/03/2022" did the program mean March knowing I'm in the UK? Better to show me "2 March 2022" in my local language. Non-English month names won't parse; so although 2022/03/02 might jar for a human reader, if the "reader" will be another program then it is preferable; but cmdlets like `Export-csv` convert dates using *local* culture - unless they are explicitly told which culture to use. Commands which interpret dates written as strings should state their cultural assumptions, but very few do.  
+If the output was "02/03/2022" did the program mean March knowing I'm in the UK? Better to show me "2 March 2022" in my local language. Non-English month names won't parse; so although 2022/03/02 might jar for a human reader, if the "reader" will be another program then it a better format; but cmdlets like `Export-csv` convert dates using *local* culture - unless they are explicitly told which culture to use. Commands which interpret dates written as strings should state their cultural assumptions, but very few do.  
 In the next post I will talk about errors that can result from handling times without proper care, and this shapes how time should be written.
 
 ### Comparing cultures
@@ -226,7 +226,7 @@ Invariant is not the same as US - the **date** format is US style, but **time** 
 
 ```
 
-English-US culture has a 12 hour clock with AM and PM, but invariant culture uses the 24 Hour clock. Both will parse but there can be ambiguity about the hour after midnight.
+English-US culture has a 12 hour clock with AM and PM designators, but invariant culture uses the 24 Hour clock. Both will parse but there can be ambiguity about the hour after midnight.
 
 ```powershell-interactive
     >[string][datetime]"12/30/2021 12:44:54 AM" 
@@ -323,29 +323,29 @@ You can’t use the letters above singly. So for example, if you want to know if
 | "U"       | Universal full date/time pattern       |                               |
 | "Y", "y"  | Year month pattern                     |                               |
 
-These short codes are especially useful with the `-f` operator, the local codes are preferable to spelling out day, month and year because if a script travels internationally the date will be wrong in some places, but `Today is {0:D}" -f $now`  will display in local long format, by contrast, `"Today is $now"` results in a cast operation and displays date and time in invariant format which might not be what the user expects.  
+These short codes are especially useful with the `-f` operator, the local codes are preferable to spelling out day, month and year because if a script travels internationally the date will be displayed wrongly in some places (with the potential for being misread), but `Today is {0:D}" -f $now` will display in the *local* long format, by contrast, `"Today is $now"` results in a cast operation and displays date and time in invariant format which might not be what the user expects.
 
 The third post in this series will look at time zones, and I said above that errors can result from handling times without proper care and this applies to the "R" and "u" patterns in the table...
 
 `Get-Date` gets the current **local time** and if part of the date/time is specified as parameter, then that part is adjusted; the resulting time can be converted to **UTC time**, and formatting can be applied, like this
 
 ```powershell-interactive
-    Get-Date -month 6 -day 30 -Format "r"
+    ps> Get-Date -month 6 -day 30 -Format "r"
     Thu, 30 Jun 2022 12:12:15 GMT
 
-    Get-Date -month 6 -day 30 -Format "u"
+    ps> Get-Date -month 6 -day 30 -Format "u"
     2022-06-30 12:12:17Z
 
-    Get-Date -month 6 -day 30 -Format "U"
+    ps> Get-Date -month 6 -day 30 -Format "U"
     2022-06-30 11:12:19
 
-    Get-Date -month 6 -day 30 -AsUTC
+    ps> Get-Date -month 6 -day 30 -AsUTC
     30 June 2022 11:12:23
 
-    Get-Date -month 6 -day 30 -AsUTC -Format "u"
+    ps> Get-Date -month 6 -day 30 -AsUTC -Format "u"
     2022-06-30 11:12:30Z
 
-    Get-Date -month 6 -day 30 -Format "o"
+    ps> Get-Date -month 6 -day 30 -Format "o"
     2022-06-30T12:12:34.8117506+01:00
 ```
 
@@ -360,8 +360,8 @@ Before leaving the formatting of Dates and times, I wanted to mention that `[Tim
 A timespan is the difference between two times - for example how long did PowerShell wait for my input between  finishing one command and starting the next?
 
 ```powershell-interactive
-    $waitTime = (get-history -id 533).StartExecutionTime - (get-history -id 532).EndExecutionTime
-    $waitTime
+    ps> $waitTime = (get-history -id 533).StartExecutionTime - (get-history -id 532).EndExecutionTime
+    ps> $waitTime
     Days              : 0
     Hours             : 0
     Minutes           : 0
@@ -376,9 +376,9 @@ A timespan is the difference between two times - for example how long did PowerS
 
 ```
 
-There are 3 short form formats "c" ,"g" and "G", for "common" "Short General" and "Long General".  
-For custom formats dd/d, hh/h, mm/mm ss/s (for days, hours, Minutes and seconds with/without leading zeros ) and f..fffff for fractions have the same meanings as they do for `[datetime]` formatting but there is one important change - any punctuation (or spaces) must be escaped with a `\` character.  
-So `$waitTime.ToString("s.fff")` will cause an error that format string was in the wrong format because the "." was not escaped, but the following, with the addition of a `\`, works:
+There are 3 short form formats for timespans: "c" ,"g" and "G", for "common" "Short General" and "Long General".  
+For *custom* formats, dd/d, hh/h, mm/mm ss/s (for days, hours, Minutes and seconds with/without leading zeros ) and f..fffff for fractions have the same meanings as they do for `[datetime]` formatting but there is **one important change** - any punctuation (or spaces) must be escaped with a `\` character.  
+So `$waitTime.ToString("s.fff")` will cause an error saying the format string was in the wrong format because the "." was not escaped, but the following, with the addition of a `\`, works:
 
 ```powershell-interactive
     $waittime.ToString("s\.fff") 

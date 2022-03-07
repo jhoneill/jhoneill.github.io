@@ -8,7 +8,7 @@ tags:
     - .NET
     - Formatting
 ---
->  People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly timey wimey stuff. 
+>  People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly timey wimey stuff.
 
 From Doctor Who - Blink, by Stephen Moffat.
 
@@ -35,6 +35,7 @@ In .NET a `[DateTime]` is *either* **universal** time - fixed to zero offset fro
 
     ps> $t.ToUniversalTime()
     21 January 2022 20:57:03
+
 ```
 
 In the examples above `$t` holds a local time. When the time is first converted, the timezone is London (winter) time which is UTC +0, so converting to UTC makes no difference.  

@@ -6,13 +6,13 @@
         {
             "label": "jekyll serve",
             "type": "process",
-            "command": "C:\\Ruby27-x64\\bin\\bundle.cmd",
+            "command": "C:\\Ruby31-x64\\bin\\bundle.bat",
             "args": [
                 {
                     "value": "exec"
                 },
                 {
-                    "value": "C:\\Ruby27-x64\\bin\\jekyll"
+                    "value": "C:\\Ruby31-x64\\bin\\jekyll"
                 },
                 {
                     "value": "serve"
