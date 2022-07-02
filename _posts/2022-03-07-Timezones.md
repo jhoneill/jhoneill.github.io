@@ -8,7 +8,7 @@ tags:
     - .NET
     - Formatting
 ---
->  People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly timey wimey stuff.
+> People assume that time is a strict progression of cause to effect, but *actually* from a non-linear, non-subjective viewpoint - it's more like a big ball of wibbly wobbly timey wimey stuff.
 
 From Doctor Who - Blink, by Stephen Moffat.
 
@@ -17,7 +17,7 @@ From Doctor Who - Blink, by Stephen Moffat.
 The line along the earth's surface where it is *noon* - i.e. the sun is directly overhead - travels 1 degree to the West every 4 minutes, completing the whole 360 degrees in 24 hours.
 If you know how much time passes between noon occurring at two points, you know difference in longitude between them. In the early 1700s the Royal Navy had the first clocks able to keep time reliably on-board ships, and they selected Greenwich on the Eastern side of London as their reference point for time differences and longitude calculations. British sea power at the time made *that* the standard and longitude (and time) still works from the Greenwich meridian - the word is the latin for "noon". What is properly called "Coordinated Universal Time (or UTC)" is still "Greenwich Mean Time" to old-fashioned Brits. And UTC is used for the name because it is neither the English nor the French word order!
 
-Before railways and telegraph, clocks everywhere were to set read noon as the sun passed overhead; when differences between nearby places started to cause problems (like travelling East and arriving at the station to catch the train home a few minutes late) people started using timezones - although clocks *should* change in 1 hour steps for every 15 degrees of longitude, there were more convenient groupings and boundaries.
+Before railways and telegraph, clocks everywhere were to set read noon as the sun passed overhead; when differences between nearby places started to cause problems (like traveling East and arriving at the station to catch the train home a few minutes late) people started using timezones - although clocks *should* change in 1 hour steps for every 15 degrees of longitude, there were more convenient groupings and boundaries.
 
 In summer the sun rises before it is time to wake up, but sets before we go back to sleep, and clocks are shifted forward to tell us to wake up closer to sunrise, and to send us to bed having used less artificial light, so "Summer time" is properly called "Daylight Savings Time".
 Summer in the Northern Hemisphere is winter in the Southern and vice versa, and there is no global standard for applying the change, making a **.NET timezone** an **offset from UTC** combined with a **set of DST rules** (when the clocks go forwards and back, and by how much)  `Get-TimeZone -ListAvailable | measure` counted 141 time zones in .NET6.
