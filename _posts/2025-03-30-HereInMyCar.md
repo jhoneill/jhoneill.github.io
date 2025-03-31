@@ -65,16 +65,15 @@ The easy way to think of an EV battery is as a stack of phone or laptop
 batteries arranged to give 400-Volts, or in a few cases 800. Total usable energy
 in the ID7's battery is 77 Kilowatt-hours, and an onboard charger charges it
 from the mains; “Rapid charging” away from home uses a DC supply and bypasses
-the on-board charger.
-
+the on-board charger.  
 Plugged into a standard British 240V AC / 13-Amp socket, the on-board charger
-can get about 3½kW. Thats a last resort and Volkswagen don't even provide the
+can get about 3½kW. That's a last resort and Volkswagen don't even provide the
 “granny charger” cable to do it.  
 While the car was on order, I got a charger installed: there are plenty of
 choices, and with apologies to all of them I can’t get excited by what goes
 between the fuse box and the appliance using the power.  
 The popular [Ohme box](https://ohme-ev.com/product/ohme-home-pro/) my installer
-recommended is controlled from an app (isn’t everything? I have app-fatigue) but
+recommended is controlled from an app (isn’t everything? I have app-fatigue!) but
 my aging iPhone wouldn’t run it, so I bought a used iPad that would. Ohme don’t
 provide a data feed as such, but a bit of hacking let me get the data the app
 sees, and I'll write about *that* another time too. The Ohme has a dedicated
@@ -114,16 +113,16 @@ de-carbonizing electricity, combined-cycle natural-gas generation covers demand
 that can't be met from Nuclear, Wind, Solar, and other sustainable odds and
 ends. I'll write about getting [carbon intensity
 data](https://grid.iamkate.com/) another time but the CO2 of all electricity
-going into the car, divided by all the miles driven works out at 33g of CO2 per
-mile so far. The figure was 163g for the CC. Cost-wise it's like having a 320mpg
+going into the car, divided by all the miles driven works out at 33g of CO2/km
+so far. The figure was 163g for the CC. Cost-wise it's like having a 320mpg
 car, CO2-wise it's like 220mpg so far.
 
 **I've unlearned long held assumptions about filling up.** Some days I brought
 the CC home with less than 30 miles-worth of diesel left in the tank meaning the
 next trip had an enforced detour to fill up. I've likened the EV experience to
-having a fuel tank fairy - go to bed with the tank empty and wake up 250-300
-miles of range; if you charge at home, going somewhere to fill up is only
-necessary on long journeys (worst case about 240 miles, best case about 300).
+having a fuel tank fairy - go to bed with the tank empty and wake up with 240-300
+miles of range depending on conditions; if you charge at home, going somewhere to fill up is only
+necessary on long journeys.
 
 Three parties want to decide when home-charging starts and stops.  
 - I can tell the car “Start charging at midnight, stop at 80%” – filling to 100%
@@ -133,18 +132,18 @@ as well.
 wants me to tell it “Only turn the power on to the car at midnight” and set the
 car to charge the moment it sees power  
 - Octopus want to tell the car when to start and stop so it gets charged with
-the cheapest, greenest power. I set a level to charge to (via an app, of course
-- it charges to the same level as last time if I do nothing) and I let them call
+the cheapest, greenest power. I set a level to charge to (via an app, of course - it charges to the same level 
+as last time if I do nothing) and I let them call
 a VW service to find out howw much juice the car has, they do the sums for how
 long it needs to charge, and schedule accordingly, including lowering the price
-for charging outside the cheap-rate window when that's needed. They use that
-service to tell the car to start or stop charging.
+for charging outside the cheap-rate window when that's needed. They use the same
+service to tell the car when to start or stop charging.
 
 Letting Octopus have control saves money. If the Ohme thinks it is outside peak
-time, and the car sees power and decides to start charging; Octopus see that and
+time, and the car sees power and decides to start charging, Octopus can see what's happened and
 tell it to pause (or I say “NO! Charge NOW!” and pay the rate for that time of
 day). If I want 100% instead of 80, I need to tell them both, otherwise either
 the car says “I’ve got enough, thanks” or Octopus won't schedule enough time to
-charge. Working all this out and getting things set up was one off faff. Day to
+charge. Working all this out and getting things set up was a one-off faff. Day to
 day, charging a car is no more hassle than charging a phone, plug in and leave it
 charging while you're not using it. And I'll talk more about charging next time.
