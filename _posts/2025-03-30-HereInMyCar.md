@@ -7,7 +7,7 @@ title: Here in my car
 cars.**
 
 I'm creating a fork of my blog to talk about my experience as an electric car
-owner. The Gary Numan’s “Cars” is old favourite sog and “Stable4Days” became the
+owner. Gary Numan’s “Cars” is old favourite song and “Stable4Days” became the
 working title before I hit the keyboard... So ...
 
 Late in the summer of 2024 the repair bills to keep my ten-year old Volkswagen
