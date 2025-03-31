@@ -10,8 +10,8 @@ I'm creating a fork of my blog to talk about my experience as an electric car
 owner. Gary Numan’s “Cars” is old favourite song and “Stable4Days” became the
 working title before I hit the keyboard... So ...
 
-Late in the summer of 2024 the repair bills to keep my ten-year old Volkswagen
-CC Diesel on the road were hurting. First it was the starter motor, then the
+Late in the summer of 2024 the repair bills to keep my ten-year old [Volkswagen
+CC Diesel](https://en.wikipedia.org/wiki/Volkswagen_CC) on the road were hurting. First it was the starter motor, then the
 water pump, finally the air conditioning needed a new compressor costing more
 than the car was worth. Its first owner had specified a massaging driver's seat,
 and I'd said I would probably run the car until it fell apart for that seat, but
