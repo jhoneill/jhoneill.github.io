@@ -9,6 +9,16 @@
         }
     },
     "cSpell.words": [
-        "cmdlets"
+        "autoexec",
+        "Autorun",
+        "chcp",
+        "cmdlets",
+        "codepage",
+        "codepages",
+        "DFFF",
+        "HKEY",
+        "HKLM",
+        "TLDR",
+        "tostring"
     ]
 }
