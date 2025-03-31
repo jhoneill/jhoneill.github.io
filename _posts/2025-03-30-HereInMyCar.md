@@ -1,6 +1,8 @@
 ---
+layout: post
 date: "2025-03-30"
 title: Here in my car
+categories: Stable4Days
 ---
 
 **Here in my car / I feel safest of all ... It keeps me stable for days / in
@@ -27,9 +29,7 @@ Phaeton](https://en.wikipedia.org/wiki/Volkswagen_Phaeton) which wasn’t this
 good). I loved the silence, and I loved the gadgets I ordered the lease-car the
 next day.
 
-Volkswagen ID7 in black
-
-Volkswagen ID7 in black
+![Volkswagen ID7 in black](/assets/VW-NW.png)
 
 Oh. Did I mention the ID7 is electric? **TLDR** The verdict so far seems to be
 really nice car, low costs, and hearing about "range anxiety" but never
