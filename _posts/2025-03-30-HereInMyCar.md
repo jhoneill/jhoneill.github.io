@@ -134,7 +134,7 @@ car to charge the moment it sees power
 - Octopus want to tell the car when to start and stop so it gets charged with
 the cheapest, greenest power. I set a level to charge to (via an app, of course - it charges to the same level 
 as last time if I do nothing) and I let them call
-a VW service to find out howw much juice the car has, they do the sums for how
+a VW service to find out how much juice the car has, they do the sums for how
 long it needs to charge, and schedule accordingly, including lowering the price
 for charging outside the cheap-rate window when that's needed. They use the same
 service to tell the car when to start or stop charging.
