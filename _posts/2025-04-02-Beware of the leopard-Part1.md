@@ -7,7 +7,7 @@ categories: Stable4Days
 
 At the start of Douglas Adams’ Hitch-Hikers Guide to the Galaxy, someone
 explains that to find some information he had to go to a basement which was
-lacking both light and stairs where it was *“In the bottom drawer
+lacking both light and stairs, where it was *“In the bottom drawer
 of a locked filing cabinet in a disused lavatory with a sign on the door saying,
 ‘Beware of the leopard’”*. My experience  getting data covered by the UK's *Public Charge-Point
 Regulations* leaves me feeling  **he had it easy**.
@@ -18,7 +18,7 @@ or workplace chargers and gave Charge Point Operators (CPOs) a year to meet seve
 -   Chargers must display pricing per kWh and above 8kW they must accept contactless payments (below 8KW *can* require an app). From November 2025 they must also support at least one roaming payment provider.
 -   Networks must achieve 99% availability, and operators must submit annual up-time reports.
 -   Operators needed to confirm by December 2024 that they had a free 24/365 helpline and then report calls quarterly.
--   Operators must “ensure that reference data and availability data is made available to the public free of charge”  it must be stored in a standard format, [OCPI
+-   Operators must “ensure that reference data and availability data is made available to the public free of charge”; it must be stored in a standard format, [OCPI
     2.2](https://evroaming.org/ocpi-downloads/)
 
 I'm interested in the data rather than other compliance issues with the others. 
@@ -47,7 +47,7 @@ One of the first open-data pages I found was [Fastned's](https://www.fastnedchar
 walked me through getting and using an API-key and I had their data in a couple of minutes. 
 A CPO with fewer than 50 locations making things easy seemed a good start; keys are a minor nuisance, 
 but they’re a first line of defence against things like denial-of-service attacks.    
-Next came [Mer](https://uk.mer.eco/live-charge-point-data/) whose link didn't need a key. BP pulse had an [access request from](https://www.bppulse.co.uk/help-centre/charging/faq/public-charge-point-regulations/open-data) and after a while I found [Shell's](https://www.shell.co.uk/electric-vehicle-charging/shell-recharge-open-data-request.html#iframe=L2Zvcm1zL2VuX3VrX3BjcHJfZGF0YV9yZXF1ZXN0).
+Next came [Mer](https://uk.mer.eco/live-charge-point-data/) whose link didn't need a key. BP pulse had an [access request from](https://www.bppulse.co.uk/help-centre/charging/faq/public-charge-point-regulations/open-data) and after a while I found [one for Shell](https://www.shell.co.uk/electric-vehicle-charging/shell-recharge-open-data-request.html#iframe=L2Zvcm1zL2VuX3VrX3BjcHJfZGF0YV9yZXF1ZXN0).
 Both forms went to [eco-movement](https://www.eco-movement.com/), a Dutch company, who
 replied with keys and a short how-to guide, all quick, professional and easy to code because
 different keys with the same request URL returned different operators’ data. 
@@ -66,11 +66,12 @@ perhaps in the *Yes, Prime Minister*, episode where he complains “*I don’t* 
 you* because *I don’t know*”.
 
 One CPO’s form for *eco-movement* had a box to fill in for the operator-name, so I
-tried entering other names, I got one success, three failures and a query about what I was playing at. A few more have emerged since.
+tried entering other names, I got one success, three failures and a query about what I was playing at. A few more of their customers have emerged since.
 
 Some CPOs don't publish Open-Data access details, so I had to contact them. 
 Three admitted missing the deadline and lacking a data-feed. Others replied promptly, I thanked **Osprey Charging**, for 
-being quick and they took an interest in my project - they have an [interesting white paper on costs](https://www.ospreycharging.co.uk/post/cost-of-public-rapid-ev-charging) too. Sainsbury's Smart Charge had limited contact options, but had me accessing data with 25 minutes of calling them not just exceeding expectations but setting the fastest response record. 
+being quick and they took an interest in my project - they have an [interesting white paper on costs](https://www.ospreycharging.co.uk/post/cost-of-public-rapid-ev-charging) too. Sainsbury's Smart Charge had limited contact options, but had me accessing data with 
+25 minutes of calling them - not just exceeding expectations but setting the fastest response record. 
 
 **Others were slower** but eventually provided access or a form to request it. Only one,
 [Believ](https://www.believ.com/believ-charge-point-live-data/), are **actively
@@ -80,18 +81,16 @@ I found a workaround but getting points one by one is *slow*.
 
 Some CPOSs even major ones, **simply ignore requests**, those in my bad books 
 include **Instavolt**, **Motor Fuel Group**, and **Tesla** - all major players
-in Rapid charging and **char.gy** and **Total**  among AC point operators. 
+in rapid DC charging and **char.gy** and **Total**  among AC point operators. 
 Calls to **Instavolt** yeilded promises to resolve things which weren't kept.  
-A few days before posting this their CEO took an interest via linked-in, but so far, he hasn’t been able to get an answer either. 
+A few days before posting this their CEO took an interest via linked-in, but things haven’t changed yet.. 
 
 Some operators see sharing data as boosting the market and beneficial to them,
 others seem to see it as beneficial to their competitors or a source of bad PR. 
-As with apps, each operator's data is like a jigsaw piece, only interesting when combined with the others, and the whole is compromised if their piece is missing.
-
-I tried to replicate the "cold spots" finding even without the CPOs I mentioned
+As with apps, each operator's data is like a jigsaw piece, only interesting when combined with the others, and the whole is compromised if their piece is missing. I tried to replicate the "cold spots" finding even without the CPOs I mentioned
 ![UK Map Showing major roads and Chargers](/assets/chargePointDistribution.jpg) 
 A CPO might wonder “which of those are *ours*”, but a driver thinks “Hey I use *that* road!”. If I say, wrongly, “There are no chargers on the road from A to B” the *error* matters more than *whose* charger is on that route. 
-And Believ’s charge-point showing there IS one on the road from Y to Z doesn't hurt them. 
+And a charge-point of Believ’s showing there *is* one on the road from Y to Z doesn't hurt them. 
 
 
 It started to become clear that simply having a regulation didn’t mean the data 
