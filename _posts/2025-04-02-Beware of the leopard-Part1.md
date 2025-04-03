@@ -9,15 +9,15 @@ At the start of Douglas Adams’ Hitch-Hikers Guide to the Galaxy, someone
 explains that to find some information he had to go to a basement which was
 lacking both light and stairs where it was *“In the bottom drawer
 of a locked filing cabinet in a disused lavatory with a sign on the door saying,
-‘Beware of the leopard’”*. My expereince getting data covered by the UK's *Public Charge-Point
+‘Beware of the leopard’”*. My experience  getting data covered by the UK's *Public Charge-Point
 Regulations* leaves me feeling  **he had it easy**.
 
 The regulations arrived in 2023, they specifically excluded private 
 or workplace chargers and gave Charge Point Operators (CPOs) a year to meet several criteria:
 
 -   Chargers must display pricing per kWh and above 8kW they must accept contactless payments (below 8KW *can* require an app). From November 2025 they must also support at least one roaming payment provider.
--   Networks must achieve 99% availability and operators must submit annual up-time reports.
--   Operators needed to confirm by Decemebr 2024 that they had a free 24/365 helpline and then report calls quarterly.
+-   Networks must achieve 99% availability, and operators must submit annual up-time reports.
+-   Operators needed to confirm by December 2024 that they had a free 24/365 helpline and then report calls quarterly.
 -   Operators must “ensure that reference data and availability data is made available to the public free of charge”  it must be stored in a standard format, [OCPI
     2.2](https://evroaming.org/ocpi-downloads/)
 
@@ -31,15 +31,15 @@ I expected to go to operators’ websites, find a “how to call our API” page
 few lines of PowerShell and have the data - **how hard could it be?** Well...
 
 In early 2025 there are lots of apps to tell drivers about chargers, many linked 
-to an operator or payment provider. Some seem to be have been written without 
+to an operator or payment provider. Some seem to have been written without 
 asking, “**How is this useful?**” before making another 
-version of “*Google maps showing some chargers*” and/or “*A more awkward way to pay”. Vendors want me to install their 
+version of “*Google maps showing some chargers*” and/or “*A more awkward way to pay*”. Vendors want me to install their 
 app when I just want to see a complete list of options in one place. *Completeness* makes or 
 breaks some analysis: a sample lets you say “Rapid changers are busiest at *this* time”,
 but saying that [A quarter of England’s strategic A-roads have electric car
 charging ‘cold spots’](https://www.theguardian.com/environment/2025/mar/09/england-a-roads-electric-car-charging-cold-spots)
-could report *data* gaps as charger gaps. But whether the goal is an app for data analysis,
-anyone wanting agregated data needs to do it for themselves. 
+could report *data* gaps as charger gaps. But whether the goal is an app or data analysis,
+anyone wanting data from many operators needs to aggregate it for themselves
 
 In hindsight this might have flagged a “Beware of the leopard” experience. So might
 the absence of a definitive list of CPOs, but I just started making my own. 
@@ -50,7 +50,7 @@ but they’re a first line of defence against things like denial-of-service atta
 Next came [Mer](https://uk.mer.eco/live-charge-point-data/) whose link didn't need a key. BP pulse had an [access request from](https://www.bppulse.co.uk/help-centre/charging/faq/public-charge-point-regulations/open-data) and after a while I found [Shell's](https://www.shell.co.uk/electric-vehicle-charging/shell-recharge-open-data-request.html#iframe=L2Zvcm1zL2VuX3VrX3BjcHJfZGF0YV9yZXF1ZXN0).
 Both forms went to [eco-movement](https://www.eco-movement.com/), a Dutch company, who
 replied with keys and a short how-to guide, all quick, professional and easy to code because
-Different keys with the same request URL returned different operators’ data. 
+different keys with the same request URL returned different operators’ data. 
 
 After a third form went to them, I asked if eco-movement would tell me who else they provided this service for. No, they said, that would break
 client confidentiality. The following isn't verbatim, but the gist of the exchange that followed.   
@@ -65,23 +65,24 @@ I wasn’t sure if I was in that Douglas Adams scene, something more Kafkaesque 
 perhaps in the *Yes, Prime Minister*, episode where he complains “*I don’t* know *because I can’t find what questions to* ask *you, and I don’t know what to ask
 you* because *I don’t know*”.
 
-One CPO’s form for *eco-movement* had an operator-name box to fill in, so I
+One CPO’s form for *eco-movement* had a box to fill in for the operator-name, so I
 tried entering other names, I got one success, three failures and a query about what I was playing at. A few more have emerged since.
 
 Some CPOs don't publish Open-Data access details, so I had to contact them. 
 Three admitted missing the deadline and lacking a data-feed. Others replied promptly, I thanked **Osprey Charging**, for 
-being quick and they took an interest in my project - they have an [interesting white paper on costs](https://www.ospreycharging.co.uk/post/cost-of-public-rapid-ev-charging) too. Sainsbury's Smart Charge had limited contact options, but had me accessing data with 25 minutes of calling them which was way better than expected. 
+being quick and they took an interest in my project - they have an [interesting white paper on costs](https://www.ospreycharging.co.uk/post/cost-of-public-rapid-ev-charging) too. Sainsbury's Smart Charge had limited contact options, but had me accessing data with 25 minutes of calling them not just exceeding expectations but setting the fastest response record. 
 
 **Others were slower** but eventually provided access or a form to request it. Only one,
 [Believ](https://www.believ.com/believ-charge-point-live-data/), are **actively
 obstructive**, their API is rate-limited to 1 single-point request per second, and point IDs aren't made available.
 I had a *Teams* call with three of their senior people, who were firm that they felt sharing what others shared would harm their business. 
-I found a workaround but getting points one by one is slow.
+I found a workaround but getting points one by one is *slow*.
 
-Some CPOS, even major ones, **simply ignore requests**, those in my bad books 
+Some CPOSs even major ones, **simply ignore requests**, those in my bad books 
 include **Instavolt**, **Motor Fuel Group**, and **Tesla** - all major players
 in Rapid charging and **char.gy** and **Total**  among AC point operators. 
-Calls to **Instavolt** yeilded promises to resolve things which weren't kept. 
+Calls to **Instavolt** yeilded promises to resolve things which weren't kept.  
+A few days before posting this their CEO took an interest via linked-in, but so far, he hasn’t been able to get an answer either. 
 
 Some operators see sharing data as boosting the market and beneficial to them,
 others seem to see it as beneficial to their competitors or a source of bad PR. 
@@ -89,9 +90,9 @@ As with apps, each operator's data is like a jigsaw piece, only interesting when
 
 I tried to replicate the "cold spots" finding even without the CPOs I mentioned
 ![UK Map Showing major roads and Chargers](/assets/chargePointDistribution.jpg) 
-A CPO might wonder "which of those are ours", but a driver thinks "Hey I use *that* road!". If 
-I say, wrongly, "There are no chargers on the road from A to B" the error matters more than *whose* charger is on that route. 
-Believ’s point showing there IS one on the road from Y to Z doesn't hurt them. 
+A CPO might wonder “which of those are *ours*”, but a driver thinks “Hey I use *that* road!”. If I say, wrongly, “There are no chargers on the road from A to B” the *error* matters more than *whose* charger is on that route. 
+And Believ’s charge-point showing there IS one on the road from Y to Z doesn't hurt them. 
+
 
 It started to become clear that simply having a regulation didn’t mean the data 
 would appear and I would need to talk to some government people about the
