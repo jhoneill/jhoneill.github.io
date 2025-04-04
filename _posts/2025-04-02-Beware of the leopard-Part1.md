@@ -121,7 +121,7 @@ process. And that will be the next post, but for now here's my progress list - w
 <tr><td>ez-charge</td><td></td></tr>
 <tr><td>Fastned</td><td>Online signup for API Key</td></tr>
 <tr><td>ForEV</td><td>Via Fuuse</td></tr>
-<tr><td>Fuuse</td><td>No Answer</td></tr>
+<tr><td><b>Fuuse</b></td><td><b>No Answer</b></td></tr>
 <tr><td>GeniePoint</td><td>Need to fix Missing operator</td></tr>
 <tr><td>GRIDSERVE-GRD</td><td>Use non standard text with underscores for "OutOfOrder"</td></tr>
 <tr><td><b>Instavolt</b></td><td>No reply to mails to , phoned "We don’t know". CEO invovled. Still don’t know</td></tr>
