@@ -106,15 +106,15 @@ process. And that will be the next post, but for now here's my progress list - w
 <tr><td><b>Believ</b></td><td>They don't think they need to supply  a full list</td></tr>
 <tr><td>blink charging</td><td>Via eco-movement</td></tr>
 <tr><td>bp pulse</td><td>Noticed location errors (chepstow) need to fix missing power values from Volts and amps</td></tr>
-<tr><td><b>charg.gy</b></td><td>helpdesk say that *"All data must be made publicly available free-of-charge"* means "that we do not have an obligation to release this information,"</td></tr>
-<tr><td>Chargeplace Scotland</td><td>Need to fix missing power values from Volts and amps same server s evolt and Pogo</td></tr>
+<tr><td><b>charg.gy</b></td><td>helpdesk say that <i>"All data must be made publicly available free-of-charge"</i> means "that we do not have an obligation to release this information,"</td></tr>
+<tr><td>Chargeplace Scotland</td><td>Need to fix missing power values from Volts and amps same server as evolt and Pogo</td></tr>
 <tr><td>ChargePoint</td><td>Via eco-movement</td></tr>
 <tr><td>Clenergy</td><td>Need to fix missing missing operator and power values from Volts and amps</td></tr>
 <tr><td>Community by Shell Recharge</td><td>Via eco-movement leaves Party ID blank need to fix missing power values from Volts and amps</td></tr>
 <tr><td><b>ConnectedKerb</b></td><td>Solution delayed - they are talking to the regulator</td></tr>
 <tr><td>Dragon</td><td>Noticed website matched cleanergy, used different server and got access</td></tr>
 <tr><td><b>electroad</b></td><td><b>No answer</b></td></tr>
-<tr><td><b>esb energy</b><td>OCPI "Pending" supplied CSV format location data</td></tr>
+<tr><td><b>esb energy</b></td><td>OCPI "Pending" supplied CSV format location data</td></tr>
 <tr><td><b>evDot / bmmnetworks</b></td><td>Web site has links but they're broken</td></tr>
 <tr><td>evolt</td><td>Noticed location errors (Stortford) Same server as chargeplace Scotland and Pogo</td></tr>
 <tr><td><b>evyve</b></td><td><b>No Answers</b></td></tr>
@@ -144,5 +144,6 @@ process. And that will be the next post, but for now here's my progress list - w
 <tr><td><b>weev</b></td><td><b>No Answer</b></td></tr>
 <tr><td>wenea</td><td></td></tr>
 <tr><td><b>Zest</b></td><td>OCPI "Pending" supplying snapshots on demand</td></tr>
+
 </tbody></table>
 </center>
