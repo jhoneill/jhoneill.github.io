@@ -70,7 +70,8 @@ tried entering other names, I got one success, three failures and a query about 
 
 Some CPOs don't publish Open-Data access details, so I had to contact them. 
 Three admitted missing the deadline and lacking a data-feed. Others replied promptly, I thanked **Osprey Charging**, for 
-being quick and they took an interest in my project - they have an [interesting white paper on costs](https://www.ospreycharging.co.uk/post/cost-of-public-rapid-ev-charging) too. Sainsbury's Smart Charge had limited contact options, but had me accessing data with 
+being quick and they expressed further support, having been involved in the PCP Regs 
+consultation they helped my understanding and they have an [interesting white paper on costs](https://www.ospreycharging.co.uk/post/cost-of-public-rapid-ev-charging) too. Sainsbury's Smart Charge had limited contact options, but had me accessing data with 
 25 minutes of calling them - not just exceeding expectations but setting the fastest response record. 
 
 **Others were slower** but eventually provided access or a form to request it. Only one,
@@ -92,7 +93,54 @@ As with apps, each operator's data is like a jigsaw piece, only interesting when
 A CPO might wonder “which of those are *ours*”, but a driver thinks “Hey I use *that* road!”. If I say, wrongly, “There are no chargers on the road from A to B” the *error* matters more than *whose* charger is on that route. 
 And a charge-point of Believ’s showing there *is* one on the road from Y to Z doesn't hurt them. 
 
-
 It started to become clear that simply having a regulation didn’t mean the data 
 would appear and I would need to talk to some government people about the
-process. And that will be the next post.
+process. And that will be the next post, but for now here's my progress list - which includes some of the fixes the data needs,  and those who will end up as a discussion with the regulator.
+
+<table>
+<tr><td> **alfaPower**</td><td> Website broken for weeks ? Link on Zap map goes back to CPO list</td></tr>
+<tr><td> Allego</td><td> Need to fix missing power values from Volts and amps</td></tr>
+<tr><td> Applegreen Electric</td><td> Via eco-movement leaves party ID blank</td></tr>
+<tr><td> Be.ev</td><td> Via Fuuse</td></tr>
+<tr><td> *Believ*</td><td> They don't think they need to supply  a full list</td></tr>
+<tr><td> blink charging</td><td> Via eco-movement</td></tr>
+<tr><td> bp pulse</td><td> Noticed location errors (chepstow) need to fix missing power values from Volts and amps</td></tr>
+<tr><td> **charg.gy**</td><td> helpdesk say that *"All data must be made publicly available free-of-charge"* means "that we do not have an obligation to release this information,"</td></tr>
+<tr><td> Chargeplace Scotland</td><td> Need to fix missing power values from Volts and amps same server s evolt and Pogo</td></tr>
+<tr><td> ChargePoint</td><td> Via eco-movement</td></tr>
+<tr><td> Clenergy</td><td> Need to fix missing missing operator and power values from Volts and amps</td></tr>
+<tr><td> Community by Shell Recharge</td><td> Via eco-movement leaves Party ID blank need to fix missing power values from Volts and amps</td></tr>
+<tr><td> **ConnectedKerb**</td><td> Solution delayed - they are talking to the regulator</td></tr>
+<tr><td> Dragon</td><td> Noticed website matched cleanergy, used different server and got access</td></tr>
+<tr><td> **electroad**</td><td> **No answer**</td></tr>
+<tr><td> **esb energy<**/td><td> OCPI "Pending" supplied CSV format location data</td></tr>
+<tr><td> **evDot / bmmnetworks**</td><td> Web site has links but they're broken</td></tr>
+<tr><td> evolt</td><td> Noticed location errors (Stortford) Same server as chargeplace Scotland and Pogo</td></tr>
+<tr><td> **evyve**</td><td> **No Answers**</td></tr>
+<tr><td> ez-charge</td><td></td></tr>
+<tr><td> Fastned</td><td> Online signup for API Key</td></tr>
+<tr><td> ForEV</td><td> Via Fuuse</td></tr>
+<tr><td> Fuuse</td><td> No Answer</td></tr>
+<tr><td> GeniePoint</td><td> Need to fix Missing operator</td></tr>
+<tr><td> GRIDSERVE-GRD</td><td> Use non standard text with underscores for "OutOfOrder"</td></tr>
+<tr><td> **Instavolt**</td><td> No reply to mails to , phoned "We don’t know". CEO invovled. Still don’t know</td></tr>
+<tr><td> **IONITY**</td><td>Via Eco movement - No Tariff or capability info</td></tr>
+<tr><td> Mer</td><td></td></tr>
+<tr><td> **MFG<**/td><td>**No public access**, peer-peer sharing only</td></tr>
+<tr><td> Osprey Charging</td><td> Max Power field not present</td></tr>
+<tr><td> Pod Point</td><td> Via eco-movement</td></tr>
+<tr><td> Pogo</td><td> Same server as chargeplace Scotland and evolt</td></tr>
+<tr><td> **RawCharging**</td><td>** No answer**</td></tr>
+<tr><td> Roam Charging</td><td> Data uses modified versions of OCPI field names need to fix power, operator, party, Tariffs, names</td></tr>
+<tr><td> Sainsbury's Smart Charge</td><td> Phone contact only. Tariffs need a fix</td></tr>
+<tr><td> Shell Recharge</td><td> need to fix missing power values from Volts and amps</td></tr>
+<tr><td> **SureCharge**</td><td>**No answer**</td></tr>
+<tr><td> **Tesla**</td><td>**No answer**</td></tr>
+<tr><td> **Total**</td><td>**No answer**</td></tr>
+<tr><td> Ubitricity</td><td> Via eco-movement</td></tr>
+<tr><td> **Urban fox**</td><td> OCPI "Pending" supplied CSV format location data</td></tr>
+<tr><td> Wattif</td><td> Tariff data strangely formatted need to fix missing power values from Volts and amps</td></tr>
+<tr><td> **weev**</td><td>**No Answer**</td></tr>
+<tr><td> wenea</td><td></td></tr>
+<tr><td> **Zest**</td><td> OCPI "Pending" supplying snapshots on demand</td><td>
+</table>
