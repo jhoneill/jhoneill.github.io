@@ -103,7 +103,7 @@ process. And that will be the next post, but for now here's my progress list - w
 <tr><td>Allego</td><td>Need to fix missing power values from Volts and amps</td></tr>
 <tr><td>Applegreen Electric</td><td>Via eco-movement leaves party ID blank</td></tr>
 <tr><td>Be.ev</td><td>Via Fuuse</td></tr>
-<tr><td><b>Believ*(</td><td>They don't think they need to supply  a full list</td></tr>
+<tr><td><b>Believ</b></td><td>They don't think they need to supply  a full list</td></tr>
 <tr><td>blink charging</td><td>Via eco-movement</td></tr>
 <tr><td>bp pulse</td><td>Noticed location errors (chepstow) need to fix missing power values from Volts and amps</td></tr>
 <tr><td><b>charg.gy</b></td><td>helpdesk say that *"All data must be made publicly available free-of-charge"* means "that we do not have an obligation to release this information,"</td></tr>
