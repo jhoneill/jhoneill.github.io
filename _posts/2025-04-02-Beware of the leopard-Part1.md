@@ -142,7 +142,7 @@ process. And that will be the next post, but for now here's my progress list - w
 <tr><td><b>Urban fox</b></td><td>OCPI "Pending" supplied CSV format location data</td></tr>
 <tr><td>Wattif</td><td>Tariff data strangely formatted need to fix missing power values from Volts and amps</td></tr>
 <tr><td><b>weev</b></td><td><b>No Answer</b></td></tr>
-<tr><td>wenea</td><td></td></tr>
+<tr><td>wenea</td><td>Supplied Zipped</td></tr>
 <tr><td><b>Zest</b></td><td>OCPI "Pending" supplying snapshots on demand</td></tr>
 
 </tbody></table>
