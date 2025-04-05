@@ -118,7 +118,7 @@ process. And that will be the next post, but for now here's my progress list - w
 <tr><td><b>EVDot / bmmnetworks</b></td><td>Web site has links but they're broken</td></tr>
 <tr><td>EVolt</td><td>Noticed location errors (Stortford) Same server as chargeplace Scotland and Pogo</td></tr>
 <tr><td><b>Evyve</b></td><td><b>No Answers</b></td></tr>
-<tr><td>EZ-charge</td>API Key<td></td></tr>
+<tr><td>EZ-charge</td><td>API Key</td></tr>
 <tr><td>Fastned</td><td>Online signup for API Key</td></tr>
 <tr><td>ForEV</td><td>Via Fuuse</td></tr>
 <tr><td><b>Fuuse</b></td><td><b>No Answer</b></td></tr>
