@@ -69,7 +69,7 @@ One CPO’s form for *eco-movement* had a box to fill in for the operator-name, 
 tried entering other names, I got one success, three failures and a query about what I was playing at. A few more of their customers have emerged since.
 
 Some CPOs don't publish Open-Data access details, so I had to contact them. 
-Three admitted missing the deadline and lacking a data-feed. Others replied promptly, I thanked **Osprey Charging**, for 
+Three admitted missing the deadline and lacking a data-feed. Others replied promptly, I thanked **Osprey Charging** for 
 being quick and they expressed further support, having been involved in the PCP Regs 
 consultation they helped my understanding and they have an [interesting white paper on costs](https://www.ospreycharging.co.uk/post/cost-of-public-rapid-ev-charging) too. Sainsbury's Smart Charge had limited contact options, but had me accessing data with 
 25 minutes of calling them - not just exceeding expectations but setting the fastest response record. 
@@ -128,7 +128,7 @@ process. And that will be the next post, but for now here's my progress list - w
 <tr><td><b>Ionity</b></td><td>Via Eco movement - No Tariff or capability info</td></tr>
 <tr><td>Mer</td><td>Single file download, no API Key</td></tr>
 <tr><td><b>MFG</b></td><td><b>No public access</b>, peer-peer sharing only</td></tr>
-<tr><td>Osprey Charging</td><td>Own API Key on request. Max Power field not present</td></tr>
+<tr><td>Osprey Charging</td><td>Own API Key on request. Max Power field needs checking</td></tr>
 <tr><td>Pod Point</td><td>Via eco-movement</td></tr>
 <tr><td>Pogo</td><td>Same server as ChargePlace Scotland and EVolt</td></tr>
 <tr><td><b>RawCharging</b></td><td><b>No answer</b></td></tr>
